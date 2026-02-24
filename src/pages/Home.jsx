@@ -5,13 +5,18 @@ import ImpactStats from '../components/ImpactStats'
 import PropertyProcess from '../components/PropertyProcess'
 import PropertyTestimonials from '../components/PropertyTestimonials'
 import Conntact from '../components/conntact'
+import Specialities from '../components/Specialities'
+import Backbone from '../components/Backbone'
 
 const Home = () => {
     return (
         <div>
             <Hero />
+            <Specialities/>
+            <Backbone/>
             <FeaturedProperties />
             <ImpactStats />
+            <FeaturedProperties />
             <Conntact/>
             <PropertyProcess />
             <PropertyTestimonials />

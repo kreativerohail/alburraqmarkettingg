@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import bur from "../assets/bur.png";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,14 +21,26 @@ export default function Navbar() {
       <motion.div
         layout
         transition={{ duration: 0.4 }}
-        className="w-[90%] max-w-6xl bg-[#111] text-white rounded-[40px] px-6 py-4 shadow-xl"
+        className="w-[90%] max-w-4xl bg-[#111] text-white rounded-[40px] px-4  shadow-xl"
       >
         {/* Top Row */}
-        <div className="flex items-center justify-between relative">
-          <Link to="/">
-            <div className="text-xl font-bold">
-              Al Burraq <span className="text-gray-400">Digital</span>
-            </div>
+        <div className="flex items-center justify-between relative min-h-[50px] md:min-h-[60px]">
+
+          {/* Logo + Name */}
+          <Link to="/" className="flex items-center gap-3">
+
+            {/* Logo */}
+            <img
+              src={bur}
+              alt="Al Burraq Logo"
+              className="h-8 sm:h-10 md:h-8 w-auto object-contain transition duration-300 drop-shadow-[0_0_6px_rgba(255,255,255,0.3)]"
+            />
+
+            {/* Name (Desktop Only) */}
+            <span className="hidden md:block text-lg font-semibold tracking-wide text-gray-200">
+              Al Burraq
+            </span>
+
           </Link>
 
           {/* Desktop Menu */}
@@ -90,12 +103,17 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Toggle */}
-          <div className="md:hidden text-2xl cursor-pointer">
-            {menuOpen ? (
-              <FaTimes onClick={() => setMenuOpen(false)} />
-            ) : (
-              <FaBars onClick={() => setMenuOpen(true)} />
-            )}
+          <div className="md:hidden">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="w-11 h-11 flex items-center justify-center bg-white rounded-full shadow-md transition hover:scale-105"
+            >
+              {menuOpen ? (
+                <FaTimes className="text-black text-lg" />
+              ) : (
+                <FaBars className="text-black text-lg" />
+              )}
+            </button>
           </div>
         </div>
 

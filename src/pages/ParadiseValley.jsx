@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { FaLeaf, FaMapMarkerAlt, FaHome, FaDollarSign } from "react-icons/fa";
-import pv from "../assets/pv1.jpeg"
-import pv1 from "../assets/pv.jpeg"
+import pv from "../assets/pv1.jpeg";
+import pv1 from "../assets/pv.jpeg";
+import { Link } from "react-router-dom";
 
 export default function ParadiseValley() {
   return (
@@ -11,7 +12,6 @@ export default function ParadiseValley() {
       <section className="pt-28 pb-20 px-5 sm:px-8 lg:px-24">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
 
-          {/* LEFT */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -42,7 +42,6 @@ export default function ParadiseValley() {
             </div>
           </motion.div>
 
-          {/* RIGHT IMAGE */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -55,7 +54,6 @@ export default function ParadiseValley() {
               className="rounded-3xl w-full object-cover shadow-xl"
             />
 
-            {/* PRICE CARD */}
             <div className="absolute -bottom-6 left-4 sm:-left-6 bg-white px-6 py-4 rounded-2xl shadow-lg border">
               <p className="text-xs text-gray-500">Starting From</p>
               <p className="text-xl font-bold text-orange-500">$250,000</p>
@@ -127,6 +125,62 @@ export default function ParadiseValley() {
         </div>
       </section>
 
+      {/* PROJECTS */}
+      <section className="py-24 px-6 sm:px-8 lg:px-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+
+          <div className="text-center mb-16">
+            <p className="uppercase tracking-widest text-sm text-orange-500 font-semibold">
+              Our Projects
+            </p>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4">
+              Real Estate <span className="text-orange-500">Developments</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <ProjectCard title="Prisma Apartments" location="Islamabad" size="Luxury Apartments" />
+            <ProjectCard title="New Chakwal City" location="Chakwal" size="1200 Kanals" />
+            <ProjectCard title="Rehman Garden" location="PD Khan" size="700 Kanals" />
+            <ProjectCard title="Rehmaai Garden" location="Housing Scheme" size="Residential Project" />
+            <ProjectCard title="New City Bhera" location="Bhera" size="300 Kanals" />
+            <ProjectCard title="Executive Town" location="Chakwal" size="222 Kanals" />
+            <ProjectCard title="Model Resorts" location="Kallar Kahar" size="Commercial – 35 Kanals" />
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* PRICING */}
+      <section className="py-24 px-6 sm:px-8 lg:px-24">
+        <div className="max-w-7xl mx-auto">
+
+          <div className="text-center mb-16">
+            <p className="uppercase tracking-widest text-sm text-orange-500 font-semibold">
+              Plot Pricing
+            </p>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4">
+              Choose Your <span className="text-orange-500">Perfect Plot</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <PricingCard title="5 Marla Plot" price="PKR 18,50,000" />
+
+            <PricingCard title="10 Marla Plot" price="PKR 34,00,000" popular />
+
+            <PricingCard title="1 Kanal Plot" price="PKR 65,00,000" />
+
+          </div>
+
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-28 px-6 text-center">
         <p className="uppercase tracking-widest text-xs sm:text-sm text-orange-500 font-semibold">
@@ -137,16 +191,13 @@ export default function ParadiseValley() {
           Your Luxury Future <br />
           <span className="text-orange-500">Starts Today</span>
         </h2>
-
-        <p className="mt-6 text-gray-600 max-w-2xl mx-auto text-base sm:text-lg">
-          Schedule a private consultation and secure your future today.
-        </p>
-
-        <div className="mt-10">
-          <button className="px-10 py-4 bg-orange-500 text-white rounded-full font-semibold shadow-lg hover:scale-105 transition">
-            Schedule a Private Visit
-          </button>
-        </div>
+        <Link to="/contact">
+          <div className="mt-10">
+            <button className="px-10 py-4 bg-orange-500 text-white rounded-full font-semibold shadow-lg hover:scale-105 transition">
+              Schedule a Private Visit
+            </button>
+          </div>
+        </Link>
       </section>
 
     </div>
@@ -158,6 +209,40 @@ function Feature({ icon, title }) {
     <div className="flex items-center gap-4 bg-white p-5 rounded-2xl border shadow-sm hover:shadow-lg transition">
       <div className="text-orange-500 text-xl">{icon}</div>
       <h4 className="font-semibold">{title}</h4>
+    </div>
+  );
+}
+
+function ProjectCard({ title, location, size }) {
+  return (
+    <div className="bg-white p-6 rounded-2xl shadow hover:shadow-xl transition border">
+      <h3 className="text-xl font-bold mb-2">{title}</h3>
+      <p className="text-gray-600 mb-1">Location: {location}</p>
+      <p className="text-orange-500 font-semibold">{size}</p>
+    </div>
+  );
+}
+
+function PricingCard({ title, price, popular }) {
+  return (
+    <div className={`relative bg-white p-8 rounded-3xl border shadow-md hover:shadow-xl transition ${popular ? "border-orange-500 scale-105" : ""}`}>
+
+      {popular && (
+        <span className="absolute -top-3 right-6 bg-orange-500 text-white text-xs px-3 py-1 rounded-full">
+          Popular
+        </span>
+      )}
+
+      <h3 className="text-2xl font-bold mb-3">{title}</h3>
+
+      <p className="text-3xl font-extrabold text-orange-500 mb-6">
+        {price}
+      </p>
+
+      <button className="w-full py-3 bg-orange-500 text-white rounded-full font-semibold hover:bg-orange-600 transition">
+        Book Plot
+      </button>
+
     </div>
   );
 }
